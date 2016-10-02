@@ -1,0 +1,3 @@
+#ignore eclipse IDE specific files
+.settings
+.project
