@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainModule">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Binding</title>
+</head>
+<body ng-controller="MainController as main">
+    <h1>Data Binding in Angular</h1>
+
+    <h1>{{main.greeting + ' ' + main.username}} !!!</h1>
+    
+    
+    <input type="text" ng-model="main.greeting" placeholder="Enter a greeting">
+    <input type="text" ng-model="main.username" placeholder="Enter your name">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="data-binding.js"></script>
+</body>
+</html>
