@@ -8,8 +8,8 @@
 <body ng-controller="MusicController as music">
     <h2>Services in AngularJS</h2>
 
-    <h1>Some Metallica Albums are!!</h1>
-
+    <h1>Some Metallica Albums are:</h1>
+    
     <div ng-repeat="album in music.albums">
         <h1>{{album.name}}</h1>
         <img ng-src="{{album.image.url}}">
