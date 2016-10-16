@@ -4,7 +4,6 @@ angular.module('exampleModule', [])
     	 * (available only for the service instance)
     	 * 
     	 ***********************************/
-    	var albumsCache;
     	
     	//Parse specific Spotify data, not important.
     	var parseData = function(data) {
@@ -29,18 +28,14 @@ angular.module('exampleModule', [])
     	var self = this;
 
         self.getAlbums = function(onSuccess, onError) {
-            if(albumsCache) {
-                onSuccess(albumsCache);
-            } else {
-                console.log('Fetching from spotify');
-                var url = 'https://api.spotify.com/v1/search?q=metallica&type=album&limit=5';
-                $http.get(url).then(function(response){
-                	albumsCache = parseData(response.data);
-                	onSuccess(albumsCache)
-                }, function(errResponse){
-                    onError(errResponse.data);
-                });
-            }
+        	console.log('Fetching from spotify');
+            var url = 'https://api.spotify.com/v1/search?q=metallica&type=album&limit=5';
+            $http.get(url).then(function(response){
+            	albumsCache = parseData(response.data);
+            	onSuccess(albumsCache)
+            }, function(errResponse){
+                onError(errResponse.data);
+            });
         };
     }])
 	.controller('MusicController', ['MusicService', function(MusicService) {
