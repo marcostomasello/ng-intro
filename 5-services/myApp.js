@@ -6,7 +6,7 @@ angular.module('exampleModule', [])
     	 ***********************************/
     	
     	//Parse specific Spotify data, not important.
-    	var parseData = function(data) {
+    	var parseAlbums = function(data) {
     		var items = data.albums.items;
     		var dataFiltered = [];
     		var currentAlbum;
@@ -31,8 +31,8 @@ angular.module('exampleModule', [])
         	console.log('Fetching from spotify');
             var url = 'https://api.spotify.com/v1/search?q=metallica&type=album&limit=5';
             $http.get(url).then(function(response){
-            	albumsCache = parseData(response.data);
-            	onSuccess(albumsCache)
+            	var albums = parseAlbums(response.data);
+            	onSuccess(albums)
             }, function(errResponse){
                 onError(errResponse.data);
             });
