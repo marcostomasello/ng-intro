@@ -1,0 +1,8 @@
+<div ng-controller="AlbumsController as ac">
+    <h1 style="text-align:center;">Some Metallica Albums are:</h1>
+    
+    <div ng-repeat="album in ac.albums" ng-click="ac.goDetails(album.id)">
+        <h1>{{album.name}}</h1>
+        <img ng-src="{{album.image.url}}"/>
+    </div>
+</div>

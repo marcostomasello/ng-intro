@@ -1,10 +1,10 @@
 angular.module('exampleModule', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/albums', {
-            templateUrl: 'albumsList.html'
+            templateUrl: 'albums.html'
         })
         .when('/details/:id', {
-            templateUrl: 'albumDetails.html'
+            templateUrl: 'tracks.html'
         })
         .otherwise({redirectTo: '/albums'});
     }])
@@ -23,8 +23,23 @@ angular.module('exampleModule', ['ngRoute'])
     			currentAlbum = {};
     			currentAlbum.name = items[i].name;
     			currentAlbum.image = items[i].images[1];
-    			currentAlbum.href = items[i].href;
+    			currentAlbum.id = items[i].id;
     			dataFiltered.push(currentAlbum);
+    		}
+    		
+    		return dataFiltered;
+    	}
+    	
+    	//Parse specific Spotify data, not important.
+    	var parseTracks = function(data) {
+    		var items = data.items;
+    		var dataFiltered = [];
+    		var currentTrack;
+    		for(var i=0; i < items.length; i++ ){
+    			currentTrack = {};
+    			currentTrack.number = items[i]["track_number"];
+    			currentTrack.name = items[i].name;
+    			dataFiltered.push(currentTrack);
     		}
     		
     		return dataFiltered;
@@ -58,7 +73,7 @@ angular.module('exampleModule', ['ngRoute'])
             });
         };
     }])
-    .controller('AlbumsController', ['MusicService', function(MusicService) {
+    .controller('AlbumsController', ['MusicService', "$location", function(MusicService, $location) {
 		var self = this;
 		
 		self.albums = [];
@@ -68,6 +83,10 @@ angular.module('exampleModule', ['ngRoute'])
 		}, function(errResponse) {
 			alert("Ups, there was an error: " + JSON.stringify(errResponse, null, 4));
 		});
+		
+		self.goDetails = function(id) {
+            $location.path("/details/" + id);
+        }
 	}])
 	.controller('TracksController', ['MusicService', '$routeParams', function(MusicService, $routeParams) {
 		var self = this;
@@ -75,7 +94,7 @@ angular.module('exampleModule', ['ngRoute'])
 		
 		self.tracks = [];
 		
-		MusicService.getTracks(self.albumId, function(albums) {
+		MusicService.getTracks(self.albumId, function(tracks) {
 			self.tracks = tracks;
 		}, function(errResponse) {
 			alert("Ups, there was an error: " + JSON.stringify(errResponse, null, 4));
