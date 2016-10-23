@@ -1,10 +1,10 @@
 angular.module('exampleModule', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/albums', {
-            templateUrl: 'albums.html'
+            templateUrl: 'partials/albums.html'
         })
         .when('/details/:id', {
-            templateUrl: 'tracks.html'
+            templateUrl: 'partials/tracks.html'
         })
         .otherwise({redirectTo: '/albums'});
     }])
@@ -39,6 +39,7 @@ angular.module('exampleModule', ['ngRoute'])
     			currentTrack = {};
     			currentTrack.number = items[i]["track_number"];
     			currentTrack.name = items[i].name;
+    			currentTrack.preview = items[i]["preview_url"];
     			dataFiltered.push(currentTrack);
     		}
     		
