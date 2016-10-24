@@ -14,7 +14,7 @@ angular.module('exampleModule', [])
     			currentAlbum = {};
     			currentAlbum.name = items[i].name;
     			currentAlbum.image = items[i].images[1];
-    			currentAlbum.href = items[i].href;
+    			currentAlbum.id = items[i].id;
     			dataFiltered.push(currentAlbum);
     		}
     		
