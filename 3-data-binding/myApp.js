@@ -3,7 +3,7 @@ angular.module('mainModule', [])
     .controller('MainController', [function() {
         var self = this;
 
-        self.greeting = "Hiii";
+        self.greeting = "Hello";
         self.username = "Maximo Cozzetti";
         
      }]);
