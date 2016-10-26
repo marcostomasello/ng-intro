@@ -1,3 +1,8 @@
+/**
+ * Created by martomdev.com
+ * on October 2016 as part of the Angular Intro tutorial
+ * MIT license
+ */
 angular.module('exampleModule', [])
     .controller('MainController', [function() {
         var self = this;

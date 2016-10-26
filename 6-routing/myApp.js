@@ -1,3 +1,8 @@
+/**
+ * Created by martomdev.com
+ * on October 2016 as part of the Angular Intro tutorial
+ * MIT license
+ */
 angular.module('exampleModule', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/albums', {
